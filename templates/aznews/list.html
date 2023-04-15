@@ -1,0 +1,52 @@
+{% extends "aznews/base.html" %}
+{% block content %}
+ <!--================Blog Area =================-->
+ <section class="blog_area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mb-5 mb-lg-0">
+                <div class="blog_left_sidebar">
+                    {% for post in posts %}
+                    <article class="blog_item">
+                        <div class="blog_item_img">
+                            <img class="card-img rounded-0" src="{{ post.featured_image.url }}" alt="">
+                            <a href="#" class="blog_item_date">
+                                <h3>{{ post.published_at|date:"j" }}</h3>
+                                <p>{{ post.published_at|date:"M" }}</p>
+                            </a>
+                        </div>
+
+                        <div class="blog_details">
+                            <a class="d-inline-block" href="{% url 'post-detail' post.pk %}">
+                                <h2>{{ post.title }}</h2>
+                            </a>
+                            <p>{{ post.content|striptags|truncatechars:177 }}</p>
+                            <ul class="blog-info-link">
+                                <li><a href="#"><i class="fa fa-user"></i> {{ post.tag.all|join:"," }}</a></li>
+                                <li><a href="#"><i class="fa fa-comments"></i> {{ post.latest_comments.count }} Comments</a></li>
+                            </ul>
+                        </div>
+                    </article>
+                    {% endfor %}
+                    {% include "aznews/pagination.html" %}
+
+                 
+
+                  
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="blog_right_sidebar">
+                    {% include "aznews/main/detail/right/category.html" %}
+                    {% include "aznews/main/detail/right/newsletter.html" %}
+                    {% include "aznews/main/detail/right/popular.html" %}
+                    {% include "aznews/main/detail/right/search.html" %}
+                    {% include "aznews/main/detail/right/tag.html" %}
+            </div>
+        </div>
+    </div>
+</section>
+<!--================Blog Area =================-->
+
+
+{% endblock content %}
