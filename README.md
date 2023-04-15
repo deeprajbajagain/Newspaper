@@ -1,2 +1,3 @@
 # Newspaper
-### `python manage.py runserver`
+Run 
+### `python manage.py runserver` in terminal
