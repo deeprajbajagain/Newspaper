@@ -68,4 +68,4 @@ class Comment(TimeStampModel):
     email = models.EmailField()
 
     def __str__(self):
-        return self.messagae[:70]
+        return self.message[:70]

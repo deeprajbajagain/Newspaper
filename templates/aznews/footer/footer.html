@@ -41,32 +41,16 @@
               <p>Subscribe to this news page to get connected with</p>
               <!-- Form -->
               <div class="footer-form">
-                <div id="mc_embed_signup">
-                  <form
-                    target="_blank"
-                    action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                    method="get"
-                    class="subscribe_form relative mail_part"
-                  >
-                    <input
-                      type="email"
-                      name="email"
-                      id="newsletter-form-email"
-                      placeholder="Email Address"
-                      class="placeholder hide-on-focus"
-                      onfocus="this.placeholder = ''"
-                      onblur="this.placeholder = ' Email Address '"
-                    />
-                    <div class="form-icon">
-                      <button
-                        type="submit"
-                        name="submit"
-                        id="newsletter-submit"
-                        class="email_icon newsletter-submit button-contactForm"
-                      >
-                        Subscribe
-                      </button>
-                    </div>
+    <div id="newsletter_letter_message"></div>
+    <form action="" method="post" id="news_letter_side_form">
+      {% csrf_token %}
+       <div class="form-group">
+          <input type="email" class="form-control" onfocus="this.placeholder = ''"
+             onblur="this.placeholder = 'Enter email'" placeholder='Enter email' name="email" required>
+       </div>
+       <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+          type="submit">Subscribe</button>
+    </form>
                     <div class="mt-10 info"></div>
                   </form>
                 </div>
@@ -74,62 +58,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-3 col-lg-3 col-md-5 col-sm-6">
-          <div class="single-footer-caption mb-50 mt-60">
-            <div class="footer-tittle">
-              <h4>Instagram Feed</h4>
-            </div>
-            <div class="instagram-gellay">
-              <ul class="insta-feed">
-                <li>
-                  <a href="#">
-                    <img
-                      src="{% static 'assets/img/post/instra1.jpg' %}"
-                      alt=""
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <img
-                      src="{% static 'assets/img/post/instra2.jpg' %}"
-                      alt=""
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <img
-                      src="{% static 'assets/img/post/instra3.jpg' %}"
-                      alt=""
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <img
-                      src="{% static 'assets/img/post/instra4.jpg' %}"
-                      alt=""
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <img
-                      src="{% static 'assets/img/post/instra5.jpg' %}"
-                      alt=""
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <img
-                      src="{% static 'assets/img/post/instra6.jpg' %}"
-                      alt=""
-                    />
-                  </a>
-                </li>
-              </ul>
+       
             </div>
           </div>
         </div>

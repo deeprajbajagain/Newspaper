@@ -10,6 +10,8 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, View, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import EmptyPage,PageNotAnInteger,Paginator
+
 
 
 class HomeView(ListView):
@@ -96,14 +98,25 @@ class PostSearchView(View):
     def get(self, request, *args, **kwargs):
         print(request.GET)
         query = request.GET["query"]
-        posts = Post.objects.filter(
-            Q(title__icontains=query) | Q(contain__icontains=query)
+        print(query)
+        post = Post.objects.filter(
+            Q(title__icontains=query) | Q(content__icontains=query)
         )
+        print(post)
+        page = request.GET.get("page",1)
+        paginator = Paginator(post,10)
+        try:
+            page_obj=paginator.page(page)
+        except PageNotAnInteger:
+            page_obj = paginator.page(1)
+        except EmptyPage:
+            page_obj=paginator.page(paginator.num_pages)
         return render(
             request,
             "aznews/list.html",
-            {"query": query, "posts": posts},
+            {"query": query, "posts": page_obj},
         )
+       
 
 
 class NewsLetterView(View):

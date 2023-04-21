@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-lg-8 mb-5 mb-lg-0">
                 <div class="blog_left_sidebar">
-                    {% for post in posts %}
+                    {% for post in page_obj %}
                     <article class="blog_item">
                         <div class="blog_item_img">
                             <img class="card-img rounded-0" src="{{ post.featured_image.url }}" alt="">
@@ -29,7 +29,7 @@
                     </article>
                     {% endfor %}
                     {% include "aznews/pagination.html" %}
-                    
+
                  
 
                   
@@ -50,3 +50,17 @@
 
 
 {% endblock content %}
+
+{% block extra_script %}
+<script>
+    $('.pagination_number').click(function(e){
+        e.preventDefault();
+        let current_url = window.location.href.split("?")[0]
+        let params = new URL(document.location).searchParams;
+        let query = params.get("query")
+        let href = $(this).attr"href");
+        let new_url =`${current_url}$(href)&query=${query}`;
+        window.location.replace(new_url);
+    })
+    <script/>
+{% endblock extra_script %}
